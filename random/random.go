@@ -79,9 +79,10 @@ func String(opts *Options) (string, error) {
 
 	var last string
 
+	// chars := 0
 	b := 0
 
-	for len(strings.Join(result, "")) < opts.Length {
+	for b < opts.Length {
 
 		j := r.Intn(count)
 		r := runes[j]
