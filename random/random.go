@@ -55,17 +55,19 @@ func init() {
 }
 
 type Options struct {
-	Length int
-	Chars  int
-	ASCII  bool
+	Length       int
+	Chars        int
+	ASCII        bool
+	AlphaNumeric bool
 }
 
 func DefaultOptions() *Options {
 
 	opts := Options{
-		Length: min_length,
-		Chars:  0,
-		ASCII:  false,
+		Length:       min_length,
+		Chars:        0,
+		ASCII:        false,
+		AlphaNumeric: false,
 	}
 
 	return &opts
@@ -89,6 +91,13 @@ func String(opts *Options) (string, error) {
 
 		if opts.ASCII && r > 127 {
 			continue
+		}
+
+		if opts.AlphaNumeric {
+
+			if !unicode.IsLetter(r) && !unicode.IsNumber(r) {
+				continue
+			}
 		}
 
 		c := fmt.Sprintf("%c", r)

@@ -18,24 +18,15 @@ All of this package's dependencies are bundled with the code in the `vendor` dir
 package main
 
 import (
-	"flag"
 	"fmt"
 	"github.com/aaronland/go-string/random"
-	"log"
 )
 
 func main() {
 
-	var ascii = flag.Bool("ascii", false, "")
-	var length = flag.Int("length", 32, "")
-	var chars = flag.Int("chars", 0, "")
-
-	flag.Parse()
-
 	opts := random.DefaultOptions()
-	opts.ASCII = *ascii
-	opts.Length = *length
-	opts.Chars = *chars
+	opts.Length = 40
+	opts.Chars = 20
 
 	s, _ := random.String(opts)
 
@@ -44,3 +35,20 @@ func main() {
 ```
 
 _Error handling omitted for the sake of brevity._
+
+## Tools
+
+### randomstr
+
+```
+./bin/randomstr -h
+Usage of ./bin/randomstr:
+  -alphanumeric
+    	Only include alpha-numeric characters (this causes the -ascii flag to be set to true)
+  -ascii
+    	Only include ASCII characters
+  -chars int
+    	Minimum length of the random string, in characters
+  -length int
+    	Minimum length of the random string, in bytes (default 32)
+```	
