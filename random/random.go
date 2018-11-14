@@ -84,6 +84,12 @@ func String(opts *Options) (string, error) {
 	// chars := 0
 	b := 0
 
+	alpha_numeric := [][]int{
+		[]int{48, 57},  // (0-9)
+		[]int{65, 90},  // (A-Z)
+		[]int{97, 122}, // (a-z)
+	}
+
 	for b < opts.Length {
 
 		j := r.Intn(count)
@@ -95,9 +101,22 @@ func String(opts *Options) (string, error) {
 
 		if opts.AlphaNumeric {
 
-			if !unicode.IsLetter(r) && !unicode.IsNumber(r) {
+			is_alpha_numeric := false
+
+			for _, bookends := range alpha_numeric {
+
+				r_int := int(r)
+
+				if r_int >= bookends[0] && r_int <= bookends[1] {
+					is_alpha_numeric = true
+					break
+				}
+			}
+
+			if !is_alpha_numeric {
 				continue
 			}
+
 		}
 
 		c := fmt.Sprintf("%c", r)
