@@ -1,9 +1,8 @@
 package random
 
 import (
-	_ "errors"
+	"encoding/base32"
 	"fmt"
-	_ "log"
 	"math/rand"
 	"strings"
 	"time"
@@ -59,6 +58,7 @@ type Options struct {
 	Chars        int
 	ASCII        bool
 	AlphaNumeric bool
+	Base32       bool
 }
 
 func DefaultOptions() *Options {
@@ -68,6 +68,7 @@ func DefaultOptions() *Options {
 		Chars:        0,
 		ASCII:        false,
 		AlphaNumeric: false,
+		Base32:       false,
 	}
 
 	return &opts
@@ -143,5 +144,10 @@ func String(opts *Options) (string, error) {
 	}
 
 	s := strings.Join(result, "")
+
+	if opts.Base32 {
+		s = base32.StdEncoding.EncodeToString([]byte(s))
+	}
+
 	return s, nil
 }
