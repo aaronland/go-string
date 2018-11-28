@@ -7,6 +7,7 @@ prep:
 self:   prep rmdeps
 	if test -d src; then rm -rf src; fi
 	mkdir -p src/github.com/aaronland/go-string
+	cp -r dsn src/github.com/aaronland/go-string
 	cp -r random src/github.com/aaronland/go-string
 	cp *.go src/github.com/aaronland/go-string/
 	if test -d vendor; then cp -r vendor/* src/; fi
@@ -28,6 +29,7 @@ vendor-deps: rmdeps deps
 
 fmt:
 	go fmt cmd/*.go
+	go fmt dsn/*.go
 	go fmt random/*.go
 	go fmt *.go
 
