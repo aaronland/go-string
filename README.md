@@ -1,16 +1,12 @@
 # go-string
 
+Go package providing methods for creating and manipulating common string types.
+
 There are many string libraries. This one is mine.
 
-## Install
+## Documentation
 
-You will need to have both `Go` (specifically [version 1.12](https://golang.org/dl/) or higher because we're using [Go modules](https://github.com/golang/go/wiki/Modules)) and the `make` programs installed on your computer. Assuming you do just type:
-
-```
-make tools
-```
-
-All of this package's dependencies are bundled with the code in the `vendor` directory.
+[![Go Reference](https://pkg.go.dev/badge/github.com/aaronland/go-string.svg)](https://pkg.go.dev/github.com/aaronland/go-string)
 
 ## Example
 
